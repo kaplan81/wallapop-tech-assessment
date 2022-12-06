@@ -7,30 +7,15 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
-          "skipTests": true
+          "style": "scss"
         },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:interceptor": {
-          "skipTests": true
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:resolver": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
-        }
+        "@schematics/angular:class": {},
+        "@schematics/angular:directive": {},
+        "@schematics/angular:guard": {},
+        "@schematics/angular:interceptor": {},
+        "@schematics/angular:pipe": {},
+        "@schematics/angular:resolver": {},
+        "@schematics/angular:service": {}
       },
       "root": "projects/product-manager",
       "sourceRoot": "projects/product-manager/src",
@@ -42,18 +27,14 @@
             "outputPath": "dist/product-manager",
             "index": "projects/product-manager/src/index.html",
             "main": "projects/product-manager/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/product-manager/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/product-manager/src/favicon.ico",
               "projects/product-manager/src/assets"
             ],
-            "styles": [
-              "projects/product-manager/src/styles.scss"
-            ],
+            "styles": ["projects/product-manager/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -104,19 +85,14 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/product-manager/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/product-manager/src/favicon.ico",
               "projects/product-manager/src/assets"
             ],
-            "styles": [
-              "projects/product-manager/src/styles.scss"
-            ],
+            "styles": ["projects/product-manager/src/styles.scss"],
             "scripts": []
           }
         }
