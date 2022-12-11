@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { delay, map, Observable } from 'rxjs';
 import { ProductItem, ProductSearchData } from '../models/product.model';
 
 @Injectable({
@@ -11,6 +11,9 @@ export class ProductsService {
 
   getProducts(): Observable<ProductItem[]> {
     const url = 'https://frontend-tech-test-data.s3-eu-west-1.amazonaws.com/items.json';
-    return this.http.get<ProductSearchData>(url).pipe(map((data: ProductSearchData) => data.items));
+    return this.http
+      .get<ProductSearchData>(url)
+      .pipe(map((data: ProductSearchData) => data.items))
+      .pipe(delay(2000));
   }
 }

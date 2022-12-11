@@ -1,5 +1,10 @@
-<ul class="products">
-  <li class="products__product" *ngFor="let product of products$ | async">
-    <mng-product [product]="product"></mng-product>
-  </li>
-</ul>
+<div class="products">
+  <ul class="products__list" *ngIf="products$ | async; else spinner">
+    <li class="products__list__item" *ngFor="let product of products$ | async">
+      <mng-product [product]="product"></mng-product>
+    </li>
+  </ul>
+  <ng-template #spinner>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+</div>

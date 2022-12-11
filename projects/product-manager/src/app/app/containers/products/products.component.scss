@@ -1,11 +1,13 @@
 .products {
   margin: 20px 0 60px;
-  &__product {
-    display: flex;
-    justify-content: center;
-    mng-product {
-      width: 960px;
-      margin-bottom: 20px;
+  &__list {
+    &__item {
+      display: flex;
+      justify-content: center;
+      mng-product {
+        width: 960px;
+        margin-bottom: 20px;
+      }
     }
   }
 }
