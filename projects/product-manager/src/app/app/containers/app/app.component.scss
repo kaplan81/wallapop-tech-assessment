@@ -12,6 +12,7 @@
     grid-area: header;
     width: 100%;
     mat-toolbar {
+      opacity: 75%;
       height: 100%;
       display: flex;
       justify-content: space-between;
@@ -21,24 +22,23 @@
     }
   }
   &__search {
-    height: 50px;
     display: flex;
     justify-content: center;
+    height: 50px;
     margin: 30px;
     &__input {
-      border: 2px solid #ccc;
-      outline: none;
       font-family: Roboto, 'Helvetica Neue', sans-serif;
       font-size: 16px;
       width: 400px;
       height: 50px;
+      border: 2px solid #ccc;
       border-radius: 5px;
       padding: 10px 20px;
       &:hover,
       &:focus {
         border: 2px solid #555;
+        background-color: #fff;
       }
-      -webkit-transition: 250ms;
       transition: 250ms;
     }
   }
