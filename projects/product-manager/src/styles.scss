@@ -15,4 +15,8 @@ body {
     left: 0;
     margin: auto;
   }
+  .mat-mdc-button-base:disabled {
+    background-color: #555;
+    color: #000;
+  }
 }
