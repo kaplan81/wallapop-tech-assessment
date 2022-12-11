@@ -1,8 +1,10 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ActivatedRoute, Params } from '@angular/router';
 import {
   BehaviorSubject,
+  combineLatest,
   EMPTY,
   filter,
   map,
@@ -37,24 +39,26 @@ import { ProductsService } from '../../services/products/products.service';
   templateUrl: './products.component.html',
 })
 export class ProductsComponent implements OnInit, OnDestroy {
+  static readonly perPage = 5;
   #destroyed$ = new Subject<void>();
   loading$: Observable<boolean>;
+  page$: Observable<number>;
   #productsService = inject(ProductsService);
   #productsStateService = inject(ProductsStateService);
   products$: Observable<ProductItem[]>;
+  #route = inject(ActivatedRoute);
   sort$ = new BehaviorSubject<SortET>(Sort[Sort.title] as SortET);
 
   constructor() {
+    this.page$ = this.#route.queryParams.pipe(map((params: Params) => +params['page'] ?? 1));
     this.loading$ = this.#productsStateService
       .getStateProp('loading')
       .pipe(shareReplay({ bufferSize: 1, refCount: true }), takeUntil(this.#destroyed$));
-    this.products$ = this.sort$.pipe(
-      switchMap((sort: SortET) =>
+    this.products$ = combineLatest([this.sort$, this.page$]).pipe(
+      switchMap(([sort, page]: [SortET, number]) =>
         this.#productsStateService
           .getStateProp('entities')
-          .pipe(
-            map((products: ProductItem[]) => products.sort((a, b) => (a[sort] < b[sort] ? -1 : 1))),
-          ),
+          .pipe(map((products: ProductItem[]) => this.parseProducts(products, page, sort))),
       ),
     );
     // Subscribe to loading$ as soon as possible.
@@ -86,5 +90,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   onSortSelected(event: SortET): void {
     this.sort$.next(event);
+  }
+
+  private parseProducts(products: ProductItem[], page: number, sort: SortET): ProductItem[] {
+    const sliceStart: number = ProductsComponent.perPage * (page - 1);
+    let sliceEnd: number = sliceStart + ProductsComponent.perPage;
+    if (sliceEnd > products.length) {
+      sliceEnd = products.length;
+    }
+    return products.sort((a, b) => (a[sort] < b[sort] ? -1 : 1)).slice(sliceStart, sliceEnd);
   }
 }
