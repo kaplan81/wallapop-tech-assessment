@@ -1,0 +1,14 @@
+.home {
+  width: 960px;
+  margin: 60px auto;
+  &__heading {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  &__paragraph {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+}
