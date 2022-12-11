@@ -14,4 +14,9 @@ export class SearchComponent {
   searchForm = this.#fb.group({
     searchCriteria: [''],
   });
+
+  onSubmit(event: SubmitEvent): void {
+    console.log('onSubmit', event);
+    this.searchForm.reset();
+  }
 }
