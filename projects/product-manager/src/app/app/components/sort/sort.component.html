@@ -1,11 +1,12 @@
 <div class="sort">
-  <mat-form-field appearance="fill">
-    <mat-label>Sort by</mat-label>
-    <select matNativeControl required>
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
-    </select>
-  </mat-form-field>
+  <form class="sort__form" [formGroup]="sortForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Sort by</mat-label>
+      <select matNativeControl formControlName="sortCriteria">
+        <option *ngFor="let sortOption of sortOptions" [value]="sortOption">
+          {{ sortOption }}
+        </option>
+      </select>
+    </mat-form-field>
+  </form>
 </div>
