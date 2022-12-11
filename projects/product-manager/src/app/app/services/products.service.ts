@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { ProductItem, ProductSearchData } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +9,8 @@ import { map, Observable } from 'rxjs';
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<any> {
+  getProducts(): Observable<ProductItem[]> {
     const url = 'https://frontend-tech-test-data.s3-eu-west-1.amazonaws.com/items.json';
-    return this.http.get<any>(url).pipe(map((data: any) => data.items));
+    return this.http.get<ProductSearchData>(url).pipe(map((data: ProductSearchData) => data.items));
   }
 }

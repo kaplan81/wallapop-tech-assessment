@@ -1,6 +1,7 @@
 import { AsyncPipe, NgFor } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ProductItem } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -13,5 +14,5 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductsComponent {
   #productsService = inject(ProductsService);
-  products$: Observable<any> = this.#productsService.getProducts();
+  products$: Observable<ProductItem[]> = this.#productsService.getProducts();
 }
