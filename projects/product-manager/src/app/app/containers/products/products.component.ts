@@ -1,5 +1,6 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ActivatedRoute, Params } from '@angular/router';
 import {
@@ -30,6 +31,7 @@ import { ProductsService } from '../../services/products/products.service';
     AsyncPipe,
     ProductComponent,
     MatProgressSpinnerModule,
+    MatButtonModule,
     SearchComponent,
     SortComponent,
   ],
@@ -41,7 +43,10 @@ import { ProductsService } from '../../services/products/products.service';
 export class ProductsComponent implements OnInit, OnDestroy {
   static readonly perPage = 5;
   #destroyed$ = new Subject<void>();
+  isNextDisabled$: Observable<boolean>;
+  isPrevDisabled$: Observable<boolean>;
   loading$: Observable<boolean>;
+  #maxPage = 1;
   page$: Observable<number>;
   #productsService = inject(ProductsService);
   #productsStateService = inject(ProductsStateService);
@@ -51,6 +56,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.page$ = this.#route.queryParams.pipe(map((params: Params) => +params['page'] ?? 1));
+    this.isNextDisabled$ = this.page$.pipe(map((page: number) => page + 1 > this.#maxPage));
+    this.isPrevDisabled$ = this.page$.pipe(map((page: number) => page === 1));
     this.loading$ = this.#productsStateService
       .getStateProp('loading')
       .pipe(shareReplay({ bufferSize: 1, refCount: true }), takeUntil(this.#destroyed$));
@@ -95,6 +102,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private parseProducts(products: ProductItem[], page: number, sort: SortET): ProductItem[] {
     const sliceStart: number = ProductsComponent.perPage * (page - 1);
     let sliceEnd: number = sliceStart + ProductsComponent.perPage;
+    if (products.length > 0) {
+      this.#maxPage = Math.ceil(products.length / ProductsComponent.perPage);
+    }
     if (sliceEnd > products.length) {
       sliceEnd = products.length;
     }

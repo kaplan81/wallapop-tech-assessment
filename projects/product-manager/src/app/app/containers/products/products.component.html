@@ -7,6 +7,24 @@
     <li class="products__list__item" *ngFor="let product of products$ | async">
       <mng-product [product]="product"></mng-product>
     </li>
+    <div class="products__list__pagination">
+      <button
+        class="products__list__pagination__prev"
+        mat-raised-button
+        color="accent"
+        [disabled]="isPrevDisabled$ | async"
+      >
+        Previous
+      </button>
+      <button
+        class="products__list__pagination__next"
+        mat-raised-button
+        color="accent"
+        [disabled]="isNextDisabled$ | async"
+      >
+        Next
+      </button>
+    </div>
   </ul>
   <ng-template #spinner>
     <mat-spinner></mat-spinner>
