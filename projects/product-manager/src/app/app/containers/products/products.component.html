@@ -1,17 +1,7 @@
 <div class="products">
   <div class="products__search">
-    <mng-search></mng-search>
-    <div class="products__search__sort">
-      <mat-form-field appearance="fill">
-        <mat-label>Sort by</mat-label>
-        <select matNativeControl required>
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
-        </select>
-      </mat-form-field>
-    </div>
+    <mng-search class="products__search__search"></mng-search>
+    <mng-sort class="products__search__sort"></mng-sort>
   </div>
   <ul class="products__list" *ngIf="(loading$ | async) === false; else spinner">
     <li class="products__list__item" *ngFor="let product of products$ | async">
