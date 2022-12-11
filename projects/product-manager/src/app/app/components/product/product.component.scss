@@ -1,5 +1,13 @@
 .product {
   mat-card {
     margin: 0 30px;
+    mat-icon {
+      margin: 0 15px 5px 15px;
+      opacity: 25%;
+      cursor: pointer;
+      &.selected {
+        opacity: 100%;
+      }
+    }
   }
 }

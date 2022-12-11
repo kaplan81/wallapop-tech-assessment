@@ -20,7 +20,7 @@ import { ProductComponent } from '../../components/product/product.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { SortComponent } from '../../components/sort/sort.component';
 import { Sort, SortET } from '../../enums/sort.enum';
-import { ProductItem } from '../../models/product.model';
+import { ProductItemState } from '../../models/products-state.model';
 import { ProductsStateService } from '../../services/products-state/products-state.service';
 import { ProductsService } from '../../services/products/products.service';
 
@@ -51,7 +51,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   #page$: Observable<number>;
   #productsService = inject(ProductsService);
   #productsStateService = inject(ProductsStateService);
-  products$: Observable<ProductItem[]>;
+  products$: Observable<ProductItemState[]>;
   #route = inject(ActivatedRoute);
   #router = inject(Router);
   sort$ = new BehaviorSubject<SortET>(Sort[Sort.title] as SortET);
@@ -71,7 +71,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       switchMap(([sort, page]: [SortET, number]) =>
         this.#productsStateService
           .getStateProp('entities')
-          .pipe(map((products: ProductItem[]) => this.parseProducts(products, page, sort))),
+          .pipe(map((products: ProductItemState[]) => this.parseProducts(products, page, sort))),
       ),
     );
   }
@@ -108,7 +108,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-  private parseProducts(products: ProductItem[], page: number, sort: SortET): ProductItem[] {
+  private parseProducts(
+    products: ProductItemState[],
+    page: number,
+    sort: SortET,
+  ): ProductItemState[] {
     const sliceStart: number = ProductsComponent.perPage * (page - 1);
     let sliceEnd: number = sliceStart + ProductsComponent.perPage;
     if (products.length > 0) {

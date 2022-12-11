@@ -8,7 +8,13 @@
         <img mat-card-sm-image [src]="product.image" />
       </mat-card-title-group>
     </mat-card-header>
-    <br />
-    <mat-card-content> {{ product.description }} </mat-card-content>
+    <mat-icon
+      fontIcon="star"
+      [class.selected]="product.isFavourite"
+      (click)="addTofavourites(product.email)"
+    ></mat-icon>
+    <mat-card-content>
+      {{ product.description }}
+    </mat-card-content>
   </mat-card>
 </div>

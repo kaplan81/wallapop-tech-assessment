@@ -20,7 +20,7 @@ export class ProductsService {
         tap((entities: ProductItem[]) =>
           this.productsStateService.updateState({
             ...this.productsStateService.state,
-            entities,
+            entities: entities.map((entity: ProductItem) => ({ ...entity, isFavourite: false })),
             loaded: true,
             loading: false,
           }),

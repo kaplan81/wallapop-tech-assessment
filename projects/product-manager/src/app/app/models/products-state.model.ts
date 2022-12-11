@@ -1,8 +1,12 @@
 import { ProductItem } from './product.model';
 
 export interface ProductsState {
-  entities: ProductItem[];
-  favourites: ProductItem[];
+  entities: ProductItemState[];
+  favourites: string[];
   loaded: boolean;
   loading: boolean;
+}
+
+export interface ProductItemState extends ProductItem {
+  isFavourite: boolean;
 }

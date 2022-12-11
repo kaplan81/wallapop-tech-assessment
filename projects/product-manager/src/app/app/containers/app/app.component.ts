@@ -1,12 +1,11 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavigationEnd, Router, RouterEvent, RouterModule } from '@angular/router';
 import { filter, map, Observable } from 'rxjs';
 import { SearchComponent } from '../../components/search/search.component';
-import { ProductItem } from '../../models/product.model';
 import { ProductsStateService } from '../../services/products-state/products-state.service';
 
 @Component({
@@ -24,8 +23,8 @@ import { ProductsStateService } from '../../services/products-state/products-sta
   standalone: true,
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  #favourites$: Observable<ProductItem[]>;
+export class AppComponent implements OnInit {
+  #favourites$: Observable<string[]>;
   isFavouritesDisabled$: Observable<boolean>;
   isRootRoute = true;
   #productsStateService = inject(ProductsStateService);
@@ -41,7 +40,22 @@ export class AppComponent {
       .subscribe((event) => (this.isRootRoute = (event as RouterEvent).url === '/'));
     this.#favourites$ = this.#productsStateService.getStateProp('favourites');
     this.isFavouritesDisabled$ = this.#favourites$.pipe(
-      map((items: ProductItem[]) => items.length === 0),
+      map((items: string[]) => items.length === 0),
     );
+  }
+
+  ngOnInit(): void {
+    // this.#favourites$.subscribe((favourites: string[]) => {
+    //   console.log('favourites:::', favourites);
+    //   const entities: ProductItemState[] = this.#productsStateService.state.entities.map(
+    //     (entity: ProductItemState) => ({
+    //       ...entity,
+    //       isFavourite:
+    //         favourites.find((favourite: string) => favourite === entity.email) !== undefined,
+    //     }),
+    //   );
+    //   console.log(entities);
+    //   this.#productsStateService.updateStateProp('entities', entities);
+    // });
   }
 }
