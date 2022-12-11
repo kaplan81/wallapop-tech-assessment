@@ -11,7 +11,7 @@ export interface State<S> {
   state: S;
   state$: Observable<S>;
   updateState(newState: S, callback?: (newState: S) => void): void;
-  updateStateProperty<K extends keyof S>(
+  updateStateProp<K extends keyof S>(
     propertyKey: K,
     propertyValue: S[K],
     callback?: (state: S) => void,

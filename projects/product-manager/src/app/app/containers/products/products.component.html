@@ -1,5 +1,5 @@
 <div class="products">
-  <ul class="products__list" *ngIf="products$ | async; else spinner">
+  <ul class="products__list" *ngIf="(loading$ | async) === false; else spinner">
     <li class="products__list__item" *ngFor="let product of products$ | async">
       <mng-product [product]="product"></mng-product>
     </li>

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProductsStateService } from '../../services/products-state/products-state.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent {
   #fb = inject(NonNullableFormBuilder);
+  #productsStateService = inject(ProductsStateService);
   #router = inject(Router);
   searchForm = this.#fb.group({
     searchCriteria: [''],
@@ -19,6 +21,9 @@ export class SearchComponent {
 
   onSubmit(event: SubmitEvent): void {
     console.log('onSubmit', event);
-    this.#router.navigate(['products']).then(() => this.searchForm.reset());
+    this.#router.navigate(['products']).then(() => {
+      this.searchForm.reset();
+      this.#productsStateService.updateStateProp('loaded', false);
+    });
   }
 }

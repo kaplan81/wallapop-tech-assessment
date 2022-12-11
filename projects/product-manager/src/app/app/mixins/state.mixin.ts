@@ -35,7 +35,7 @@ export const stateMixin = <T extends ConstructorBase, S>(
       }
     }
 
-    updateStateProperty<K extends keyof S>(
+    updateStateProp<K extends keyof S>(
       propertyKey: K,
       propertyValue: S[K],
       callback?: (state: S) => void,
