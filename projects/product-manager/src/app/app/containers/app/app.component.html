@@ -3,7 +3,12 @@
     <mat-toolbar color="primary">
       <span routerLink="/">𝑳☉ｌｌ讠р☉р</span>
       <mng-search *ngIf="isRootRoute"></mng-search>
-      <button mat-raised-button color="accent" [disabled]="isFavouritesDisabled$ | async">
+      <button
+        mat-raised-button
+        color="accent"
+        [disabled]="isFavouritesDisabled$ | async"
+        (click)="openDialog()"
+      >
         Favourites
       </button>
     </mat-toolbar>

@@ -1,10 +1,13 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavigationEnd, Router, RouterEvent, RouterModule } from '@angular/router';
 import { filter, map, Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { FavouritesDialogComponent } from '../../components/favourites-dialog/favourites-dialog.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { ProductsStateService } from '../../services/products-state/products-state.service';
 
@@ -12,6 +15,7 @@ import { ProductsStateService } from '../../services/products-state/products-sta
   imports: [
     RouterModule,
     MatToolbarModule,
+    MatDialogModule,
     MatButtonModule,
     MatInputModule,
     SearchComponent,
@@ -23,7 +27,8 @@ import { ProductsStateService } from '../../services/products-state/products-sta
   standalone: true,
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  #dialog = inject(MatDialog);
   #favourites$: Observable<string[]>;
   isFavouritesDisabled$: Observable<boolean>;
   isRootRoute = true;
@@ -44,18 +49,17 @@ export class AppComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    // this.#favourites$.subscribe((favourites: string[]) => {
-    //   console.log('favourites:::', favourites);
-    //   const entities: ProductItemState[] = this.#productsStateService.state.entities.map(
-    //     (entity: ProductItemState) => ({
-    //       ...entity,
-    //       isFavourite:
-    //         favourites.find((favourite: string) => favourite === entity.email) !== undefined,
-    //     }),
-    //   );
-    //   console.log(entities);
-    //   this.#productsStateService.updateStateProp('entities', entities);
-    // });
+  openDialog(): void {
+    const dialogRef = this.#dialog.open(FavouritesDialogComponent, {
+      // disableClose: true,
+      enterAnimationDuration: '200ms',
+      exitAnimationDuration: '100ms',
+      height: '230px',
+      width: '550px',
+    });
+    dialogRef
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe((data: any | undefined) => {});
   }
 }
