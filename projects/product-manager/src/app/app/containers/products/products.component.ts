@@ -5,10 +5,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { EMPTY, filter, Observable, shareReplay, Subject, switchMap, takeUntil } from 'rxjs';
 import { ProductComponent } from '../../components/product/product.component';
+import { SearchComponent } from '../../components/search/search.component';
 import { ProductItem } from '../../models/product.model';
 import { ProductsStateService } from '../../services/products-state/products-state.service';
 import { ProductsService } from '../../services/products/products.service';
-import { SearchComponent } from '../search/search.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
