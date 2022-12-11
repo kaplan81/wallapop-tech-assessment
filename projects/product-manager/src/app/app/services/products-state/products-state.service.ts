@@ -11,20 +11,21 @@ export class ProductsStateService extends StateMixin<ProductsState>(productsStat
     super();
   }
 
-  addTofavourites(email: string): void {
-    const favourites: string[] = this.state.favourites;
-    const hasFavourite: boolean =
-      favourites.find((favourite: string) => favourite === email) !== undefined;
-    if (!hasFavourite) {
-      const entities: ProductItemState[] = this.state.entities.map((entity: ProductItemState) => ({
-        ...entity,
-        isFavourite: entity.email === email ? true : entity.isFavourite,
-      }));
-      this.updateState({
-        ...this.state,
-        entities,
-        favourites: [...favourites, email],
-      });
+  updateFavourites(email: string, newFavourite: boolean): void {
+    const entities: ProductItemState[] = this.state.entities.map((entity: ProductItemState) => ({
+      ...entity,
+      isFavourite: entity.email === email ? newFavourite : entity.isFavourite,
+    }));
+    let favourites: string[] = [];
+    if (newFavourite) {
+      favourites = [...this.state.favourites, email];
+    } else {
+      favourites = this.state.favourites.filter((favourite: string) => favourite !== email);
     }
+    this.updateState({
+      ...this.state,
+      entities,
+      favourites,
+    });
   }
 }

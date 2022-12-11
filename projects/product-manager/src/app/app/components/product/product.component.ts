@@ -17,7 +17,8 @@ export class ProductComponent {
   @Input() product: ProductItemState | null = null;
   #productsStateService = inject(ProductsStateService);
 
-  addTofavourites(email: string): void {
-    this.#productsStateService.addTofavourites(email);
+  updateFavourites(email: string, isFavourite: boolean): void {
+    const newFavourite: boolean = !isFavourite;
+    this.#productsStateService.updateFavourites(email, newFavourite);
   }
 }

@@ -11,7 +11,7 @@
     <mat-icon
       fontIcon="star"
       [class.selected]="product.isFavourite"
-      (click)="addTofavourites(product.email)"
+      (click)="updateFavourites(product.email, product.isFavourite)"
     ></mat-icon>
     <mat-card-content>
       {{ product.description }}
