@@ -68,22 +68,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
           .pipe(map((products: ProductItem[]) => this.parseProducts(products, page, sort))),
       ),
     );
-    // Subscribe to loading$ as soon as possible.
-    this.loading$.subscribe();
-    this.#productsStateService
-      .getStateProp('loaded')
-      .pipe(
-        filter((loaded: boolean) => !loaded),
-        takeUntil(this.#destroyed$),
-        switchMap((l: boolean) => {
-          if (!l && !this.#productsStateService.state.loading) {
-            this.#productsStateService.updateStateProp('loading', true);
-            return this.#productsService.getProducts();
-          }
-          return EMPTY;
-        }),
-      )
-      .subscribe();
   }
 
   ngOnDestroy(): void {
@@ -91,8 +75,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.loading$.subscribe();
     this.#productsStateService.updateStateProp('loading', true);
     this.#productsService.getProducts().subscribe();
+    this.refreshOnNotLoaded();
   }
 
   onSortSelected(event: SortET): void {
@@ -109,5 +95,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
       sliceEnd = products.length;
     }
     return products.sort((a, b) => (a[sort] < b[sort] ? -1 : 1)).slice(sliceStart, sliceEnd);
+  }
+
+  private refreshOnNotLoaded(): void {
+    this.#productsStateService
+      .getStateProp('loaded')
+      .pipe(
+        filter((loaded: boolean) => !loaded),
+        takeUntil(this.#destroyed$),
+        switchMap((l: boolean) => {
+          if (!l && !this.#productsStateService.state.loading) {
+            this.#productsStateService.updateStateProp('loading', true);
+            return this.#productsService.getProducts();
+          }
+          return EMPTY;
+        }),
+      )
+      .subscribe();
   }
 }
