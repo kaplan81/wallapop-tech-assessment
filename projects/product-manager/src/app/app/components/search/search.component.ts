@@ -19,8 +19,7 @@ export class SearchComponent {
     searchCriteria: [''],
   });
 
-  onSubmit(event: SubmitEvent): void {
-    console.log('onSubmit', event);
+  onSubmit(): void {
     this.#router.navigate(['products']).then(() => {
       this.searchForm.reset();
       this.#productsStateService.updateStateProp('loaded', false);

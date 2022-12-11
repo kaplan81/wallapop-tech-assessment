@@ -1,7 +1,7 @@
 <div class="products">
   <div class="products__search">
     <mng-search class="products__search__search"></mng-search>
-    <mng-sort class="products__search__sort"></mng-sort>
+    <mng-sort class="products__search__sort" (sortSelected)="onSortSelected($event)"></mng-sort>
   </div>
   <ul class="products__list" *ngIf="(loading$ | async) === false; else spinner">
     <li class="products__list__item" *ngFor="let product of products$ | async">

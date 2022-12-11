@@ -4,3 +4,4 @@ export enum Sort {
   price,
   email,
 }
+export type SortET = keyof typeof Sort;
