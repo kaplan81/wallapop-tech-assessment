@@ -1,10 +1,13 @@
-<mat-card class="product">
-  <mat-card-header>
-    <mat-card-title-group>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Small</mat-card-subtitle>
-      <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" />
-    </mat-card-title-group>
-  </mat-card-header>
-  <mat-card-content> longText </mat-card-content>
-</mat-card>
+<div class="product">
+  <mat-card *ngIf="product">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ product.title }}</mat-card-title>
+        <mat-card-subtitle>{{ product.email }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ product.price }}&euro;</mat-card-subtitle>
+        <img mat-card-sm-image [src]="product.image" />
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content> {{ product.description }} </mat-card-content>
+  </mat-card>
+</div>
