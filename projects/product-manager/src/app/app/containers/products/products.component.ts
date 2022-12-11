@@ -1,8 +1,8 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf, ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
   BehaviorSubject,
   combineLatest,
@@ -15,6 +15,7 @@ import {
   switchMap,
   takeUntil,
 } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { ProductComponent } from '../../components/product/product.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { SortComponent } from '../../components/sort/sort.component';
@@ -47,27 +48,40 @@ export class ProductsComponent implements OnInit, OnDestroy {
   isPrevDisabled$: Observable<boolean>;
   loading$: Observable<boolean>;
   #maxPage = 1;
-  page$: Observable<number>;
+  #page$: Observable<number>;
   #productsService = inject(ProductsService);
   #productsStateService = inject(ProductsStateService);
   products$: Observable<ProductItem[]>;
   #route = inject(ActivatedRoute);
+  #router = inject(Router);
   sort$ = new BehaviorSubject<SortET>(Sort[Sort.title] as SortET);
+  #viewPortScroller = inject(ViewportScroller);
 
   constructor() {
-    this.page$ = this.#route.queryParams.pipe(map((params: Params) => +params['page'] ?? 1));
-    this.isNextDisabled$ = this.page$.pipe(map((page: number) => page + 1 > this.#maxPage));
-    this.isPrevDisabled$ = this.page$.pipe(map((page: number) => page === 1));
+    this.#page$ = this.#route.queryParams.pipe(
+      map((params: Params) => +params['page'] ?? 1),
+      shareReplay({ bufferSize: 1, refCount: true }),
+    );
+    this.isNextDisabled$ = this.#page$.pipe(map((page: number) => page + 1 > this.#maxPage));
+    this.isPrevDisabled$ = this.#page$.pipe(map((page: number) => page === 1));
     this.loading$ = this.#productsStateService
       .getStateProp('loading')
       .pipe(shareReplay({ bufferSize: 1, refCount: true }), takeUntil(this.#destroyed$));
-    this.products$ = combineLatest([this.sort$, this.page$]).pipe(
+    this.products$ = combineLatest([this.sort$, this.#page$]).pipe(
       switchMap(([sort, page]: [SortET, number]) =>
         this.#productsStateService
           .getStateProp('entities')
           .pipe(map((products: ProductItem[]) => this.parseProducts(products, page, sort))),
       ),
     );
+  }
+
+  goToNextPage(): void {
+    this.#page$.pipe(take(1)).subscribe((page: number) => this.navigateToPage(page + 1));
+  }
+
+  goToPrevPage(): void {
+    this.#page$.pipe(take(1)).subscribe((page: number) => this.navigateToPage(page - 1));
   }
 
   ngOnDestroy(): void {
@@ -82,7 +96,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   onSortSelected(event: SortET): void {
-    this.sort$.next(event);
+    this.navigateToPage(1, () => this.sort$.next(event));
+  }
+
+  private navigateToPage(page: number, callback?: () => void): void {
+    this.#router.navigate([], { queryParams: { page } }).then(() => {
+      this.#viewPortScroller.scrollToPosition([0, 0]);
+      if (callback !== undefined) {
+        callback();
+      }
+    });
   }
 
   private parseProducts(products: ProductItem[], page: number, sort: SortET): ProductItem[] {

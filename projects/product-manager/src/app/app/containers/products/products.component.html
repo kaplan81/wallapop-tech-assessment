@@ -13,6 +13,7 @@
         mat-raised-button
         color="accent"
         [disabled]="isPrevDisabled$ | async"
+        (click)="goToPrevPage()"
       >
         Previous
       </button>
@@ -21,6 +22,7 @@
         mat-raised-button
         color="accent"
         [disabled]="isNextDisabled$ | async"
+        (click)="goToNextPage()"
       >
         Next
       </button>
