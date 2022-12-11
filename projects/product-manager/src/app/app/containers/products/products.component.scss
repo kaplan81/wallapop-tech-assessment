@@ -1,5 +1,11 @@
 .products {
-  margin: 20px 0 60px;
+  &__search {
+    display: flex;
+    justify-content: center;
+    &__sort {
+      margin: 33px;
+    }
+  }
   &__list {
     &__item {
       display: flex;
