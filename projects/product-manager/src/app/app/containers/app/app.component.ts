@@ -36,6 +36,7 @@ export class AppComponent {
   #router = inject(Router);
 
   constructor() {
+    this.openDialog();
     this.#router.events
       /**
        * We cannot type the event to RouterEvent because an issue wiht Angular:
@@ -54,8 +55,8 @@ export class AppComponent {
       // disableClose: true,
       enterAnimationDuration: '200ms',
       exitAnimationDuration: '100ms',
-      height: '230px',
-      width: '550px',
+      height: '80vh',
+      width: '90vh',
     });
     dialogRef
       .afterClosed()
