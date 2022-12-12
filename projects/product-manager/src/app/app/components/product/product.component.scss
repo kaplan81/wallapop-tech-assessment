@@ -1,6 +1,15 @@
 .product {
   mat-card {
     margin: 0 30px;
+    .remove {
+      font-size: 0.8rem;
+      color: #673ab7;
+      text-decoration: underline;
+      padding: 5px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
     mat-icon {
       margin: 0 15px 5px 15px;
       opacity: 25%;

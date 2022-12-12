@@ -36,7 +36,6 @@ export class AppComponent {
   #router = inject(Router);
 
   constructor() {
-    this.openDialog();
     this.#router.events
       /**
        * We cannot type the event to RouterEvent because an issue wiht Angular:
