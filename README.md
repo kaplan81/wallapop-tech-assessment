@@ -14,8 +14,6 @@ The first step is explained in the content of the home page.
 
 <img src="img/home.png">
 
-<br />
-
 Recommended further steps are the ones written in the e2e test.
 
 ## App features
@@ -26,7 +24,7 @@ When you navigate to products, you can:
 - Sort products.
 - Add or remove products to your favourites list by clicking on the item star.
 - Navigate to next and previous pages.
-- Click on Favourites button (top left) and visualize the list of your favourite products.
+- Click on Favourites button (top right) and visualize the list of your favourite products.
 - In the modal dialog you can also remove items from the list.
 
 ## Build
