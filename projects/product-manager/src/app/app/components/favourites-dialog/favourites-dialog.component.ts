@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,7 +10,7 @@ import { ProductComponent } from '../product/product.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatDialogModule, MatButtonModule, NgFor, AsyncPipe, ProductComponent],
+  imports: [MatDialogModule, MatButtonModule, NgFor, AsyncPipe, ProductComponent, ScrollingModule],
   templateUrl: './favourites-dialog.component.html',
   selector: 'mng-favourites-dialog',
   standalone: true,

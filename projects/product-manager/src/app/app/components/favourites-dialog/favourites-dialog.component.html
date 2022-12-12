@@ -1,15 +1,17 @@
 <div class="favourites-dialog">
   <ul class="favourites-dialog__favourites">
-    <li
-      class="favourites-dialog__favourites__favourite"
-      *ngFor="let favouriteEntity of favouriteEntities$ | async"
-    >
-      <mng-product
-        isInDialog
-        [product]="favouriteEntity"
-        (closeDialog)="closeDialog()"
-      ></mng-product>
-    </li>
+    <cdk-virtual-scroll-viewport itemSize="50" class="favourites-dialog__favourites__viewport">
+      <li
+        class="favourites-dialog__favourites__viewport__favourite"
+        *cdkVirtualFor="let favouriteEntity of favouriteEntities$ | async"
+      >
+        <mng-product
+          isInDialog
+          [product]="favouriteEntity"
+          (closeDialog)="closeDialog()"
+        ></mng-product>
+      </li>
+    </cdk-virtual-scroll-viewport>
   </ul>
   <div class="favourites-dialog__actions" mat-dialog-actions>
     <button class="favourites-dialog__actions__close-btn" mat-button mat-dialog-close>Close</button>
