@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
+    "e2e:run": "cypress run --headed --no-exit",
+    "e2e:open": "cypress open",
     "start": "ng serve",
     "test": "jest -b"
   },
