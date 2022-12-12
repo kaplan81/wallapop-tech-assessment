@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductComponent should match snapshot 1`] = `
+<mng-product
+  __ngContext__="0"
+  closeDialog={[Function EventEmitter_]}
+  product="null"
+>
+  <div
+    class="product"
+  >
+  </div>
+</mng-product>
+`;

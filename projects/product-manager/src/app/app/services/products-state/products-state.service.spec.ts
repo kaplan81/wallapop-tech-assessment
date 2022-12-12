@@ -1,22 +1,20 @@
-/* eslint-disable */
-/**
- * Copy and paste this snippet when implementing a unit test for a service.
- * @TODO schematic.
- */
-
 import { inject, TestBed } from '@angular/core/testing';
+import { ProductsStateService } from './products-state.service';
 
-describe('MyService', () => {
-  let myService: MyService;
+describe('ProductsStateService', () => {
+  let productsStateService: ProductsStateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MyService],
+      providers: [ProductsStateService],
     });
-    myService = TestBed.inject(MyService);
+    productsStateService = TestBed.inject(ProductsStateService);
   });
 
-  it('can be instantiated via DI', inject([MyService], (injectedService: MyService) => {
-    expect(injectedService).toEqual(myService);
-  }));
+  it('can be instantiated via DI', inject(
+    [ProductsStateService],
+    (injectedService: ProductsStateService) => {
+      expect(injectedService).toEqual(productsStateService);
+    },
+  ));
 });

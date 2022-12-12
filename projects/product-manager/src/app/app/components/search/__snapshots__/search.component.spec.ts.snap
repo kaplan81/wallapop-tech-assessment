@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchComponent should match snapshot 1`] = `
+<mng-search
+  __ngContext__="0"
+  searchForm={[Function FormGroup]}
+>
+  <form
+    class="search ng-untouched ng-pristine ng-valid"
+    novalidate=""
+  >
+    <input
+      class="search__input ng-untouched ng-pristine ng-valid"
+      formcontrolname="searchCriteria"
+      placeholder="Any search gets all products"
+      type="text"
+    />
+  </form>
+</mng-search>
+`;

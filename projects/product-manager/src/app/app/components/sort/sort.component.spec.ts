@@ -1,19 +1,15 @@
-/* eslint-disable */
-/**
- * Copy and paste this snippet when implementing a unit test for a component.
- * @TODO schematic.
- */
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SortComponent } from './sort.component';
 
-describe('MyComponent', () => {
-  let fixture: ComponentFixture<MyComponent>;
+describe('SortComponent', () => {
+  let fixture: ComponentFixture<SortComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MyComponent],
+      imports: [SortComponent, NoopAnimationsModule],
     }).compileComponents();
-    fixture = TestBed.createComponent(MyComponent);
+    fixture = TestBed.createComponent(SortComponent);
   });
 
   it('should match snapshot', () => {

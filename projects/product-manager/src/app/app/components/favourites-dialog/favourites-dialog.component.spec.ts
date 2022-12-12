@@ -1,19 +1,16 @@
-/* eslint-disable */
-/**
- * Copy and paste this snippet when implementing a unit test for a component.
- * @TODO schematic.
- */
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogRef } from '@angular/material/dialog';
+import { FavouritesDialogComponent } from './favourites-dialog.component';
 
-describe('MyComponent', () => {
-  let fixture: ComponentFixture<MyComponent>;
+describe('FavouritesDialogComponent', () => {
+  let fixture: ComponentFixture<FavouritesDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MyComponent],
+      imports: [FavouritesDialogComponent],
+      providers: [{ provide: MatDialogRef, useValue: {} }],
     }).compileComponents();
-    fixture = TestBed.createComponent(MyComponent);
+    fixture = TestBed.createComponent(FavouritesDialogComponent);
   });
 
   it('should match snapshot', () => {

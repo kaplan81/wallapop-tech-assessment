@@ -1,19 +1,14 @@
-/* eslint-disable */
-/**
- * Copy and paste this snippet when implementing a unit test for a component.
- * @TODO schematic.
- */
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SearchComponent } from './search.component';
 
-describe('MyComponent', () => {
-  let fixture: ComponentFixture<MyComponent>;
+describe('SearchComponent', () => {
+  let fixture: ComponentFixture<SearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MyComponent],
+      imports: [SearchComponent],
     }).compileComponents();
-    fixture = TestBed.createComponent(MyComponent);
+    fixture = TestBed.createComponent(SearchComponent);
   });
 
   it('should match snapshot', () => {

@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FavouritesDialogComponent should match snapshot 1`] = `
+<mng-favourites-dialog
+  __ngContext__="0"
+  dialogRef={[Function Object]}
+  favouriteEntities$={[Function Observable]}
+>
+  <div
+    class="favourites-dialog"
+  >
+    <ul
+      class="favourites-dialog__favourites"
+    >
+      <cdk-virtual-scroll-viewport
+        class="cdk-virtual-scroll-viewport favourites-dialog__favourites__viewport cdk-virtual-scrollable cdk-virtual-scroll-orientation-vertical"
+        itemsize="50"
+      >
+        <div
+          class="cdk-virtual-scroll-content-wrapper"
+        >
+        </div>
+        <div
+          class="cdk-virtual-scroll-spacer"
+        />
+      </cdk-virtual-scroll-viewport>
+    </ul>
+    <div
+      class="mat-mdc-dialog-actions mdc-dialog__actions favourites-dialog__actions"
+      mat-dialog-actions=""
+    >
+      <button
+        class="favourites-dialog__actions__close-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
+        mat-button=""
+        mat-dialog-close=""
+        type="button"
+      >
+        <span
+          class="mat-mdc-button-persistent-ripple mdc-button__ripple"
+        />
+        <span
+          class="mdc-button__label"
+        >
+          Close
+        </span>
+        <span
+          class="mat-mdc-focus-indicator"
+        />
+        <span
+          class="mat-ripple mat-mdc-button-ripple"
+          matripple=""
+        />
+        <span
+          class="mat-mdc-button-touch-target"
+        />
+      </button>
+    </div>
+  </div>
+</mng-favourites-dialog>
+`;

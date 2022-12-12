@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppComponent should match snapshot 1`] = `
+<mng-root
+  __ngContext__="0"
+  isFavouritesDisabled$={[Function Observable]}
+  isRootRoute={[Function Boolean]}
+>
+  <div
+    class="root"
+  >
+    <header>
+      <mat-toolbar
+        class="mat-toolbar mat-primary mat-toolbar-single-row"
+        color="primary"
+      >
+        <span
+          routerlink="/"
+          tabindex="0"
+        >
+          𝑳☉ｌｌ讠р☉р
+        </span>
+        <mng-search>
+          <form
+            class="search ng-untouched ng-pristine ng-valid"
+            novalidate=""
+          >
+            <input
+              class="search__input ng-untouched ng-pristine ng-valid"
+              formcontrolname="searchCriteria"
+              placeholder="Any search gets all products"
+              type="text"
+            />
+          </form>
+        </mng-search>
+        <button
+          class="mdc-button mdc-button--raised mat-mdc-raised-button mat-accent mat-mdc-button-base"
+          color="accent"
+          disabled="true"
+          mat-raised-button=""
+        >
+          <span
+            class="mat-mdc-button-persistent-ripple mdc-button__ripple"
+          />
+          <span
+            class="mdc-button__label"
+          >
+             Favourites 
+          </span>
+          <span
+            class="mat-mdc-focus-indicator"
+          />
+          <span
+            class="mat-ripple mat-mdc-button-ripple"
+            matripple=""
+          />
+          <span
+            class="mat-mdc-button-touch-target"
+          />
+        </button>
+      </mat-toolbar>
+    </header>
+    <main>
+      <router-outlet />
+    </main>
+  </div>
+</mng-root>
+`;
