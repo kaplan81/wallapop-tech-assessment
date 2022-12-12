@@ -1,9 +1,17 @@
+@use 'mixins';
+
 .products {
   &__search {
     display: flex;
     justify-content: center;
     &__sort {
       margin: 33px;
+      @include mixins.smaller-than(md) {
+        margin: 33px auto;
+      }
+    }
+    @include mixins.smaller-than(md) {
+      flex-direction: column;
     }
   }
   &__list {
@@ -24,6 +32,12 @@
       justify-content: space-between;
       width: 900px;
       margin: 0 auto;
+      @include mixins.smaller-than(lg) {
+        width: 500px;
+      }
+      @include mixins.smaller-than(sm) {
+        width: 275px;
+      }
     }
   }
 }

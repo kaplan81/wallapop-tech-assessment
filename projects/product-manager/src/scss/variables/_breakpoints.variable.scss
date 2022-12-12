@@ -1,0 +1,22 @@
+/*
+  Breakpoints based on Bootstrap:
+  https://getbootstrap.com
+
+  In principle this file should not be part of variables.scss
+  It is only used in _breakpoints.variable.scss
+*/
+
+$breakpoints: (
+  // Extra small devices (small phones).
+  // Not usable anymore. Devices are no longer that small.
+  // xs: 320px,
+  // >= sm === small devices (phones, phablets and tablets).
+  sm: 576px,
+  // >= md === medium devices (landscape tablets and laptops).
+  md: 768px,
+  // >= lg === large devices (regular monitors).
+  lg: 992px,
+  // >= xl === extra large devices (big monitors)
+  xl: 1200px
+);
+// xs range is default in mobile first.
