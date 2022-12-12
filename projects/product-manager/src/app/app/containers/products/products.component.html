@@ -4,7 +4,10 @@
     <mng-sort class="products__search__sort" (sortSelected)="onSortSelected($event)"></mng-sort>
   </div>
   <ul class="products__list" *ngIf="(loading$ | async) === false; else spinner">
-    <li class="products__list__item" *ngFor="let product of products$ | async">
+    <li
+      class="products__list__item"
+      *ngFor="let product of products$ | async; trackBy: trackByProducts"
+    >
       <mng-product [product]="product"></mng-product>
     </li>
     <div class="products__list__pagination">

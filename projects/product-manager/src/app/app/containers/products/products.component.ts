@@ -99,6 +99,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.navigateToPage(1, () => this.sort$.next(event));
   }
 
+  trackByProducts(index: number, product: ProductItemState) {
+    return product.email;
+  }
+
   private navigateToPage(page: number, callback?: () => void): void {
     this.#router.navigate([], { queryParams: { page } }).then(() => {
       this.#viewPortScroller.scrollToPosition([0, 0]);
