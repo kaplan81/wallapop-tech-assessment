@@ -2,9 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.
 
-## Development server
+## Up and running
 
-Run `ng start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```shell
+git clone https://github.com/kaplan81/wallapop-tech-assessment.git
+cd wallapop-tech-assessment
+npm i
+```
+
+Then run `ng start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Interaction
 
