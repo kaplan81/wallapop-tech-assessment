@@ -22,7 +22,6 @@ export class MatDialogMock {
   }
 }
 const matDialog = new MatDialogMock();
-// matDialog.returnedData = { data: { id: 1, name: 'abc' }, toRefresh: true, toSave: true };
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;

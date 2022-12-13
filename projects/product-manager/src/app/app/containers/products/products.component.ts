@@ -59,7 +59,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.#page$ = this.#route.queryParams.pipe(
-      map((params: Params) => +params['page'] ?? 1),
+      map((params: Params) => (params['page'] !== undefined ? +params['page'] : 1)),
       shareReplay({ bufferSize: 1, refCount: true }),
     );
     this.isNextDisabled$ = this.#page$.pipe(map((page: number) => page + 1 > this.#maxPage));
@@ -69,9 +69,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
       .pipe(shareReplay({ bufferSize: 1, refCount: true }), takeUntil(this.#destroyed$));
     this.products$ = combineLatest([this.sort$, this.#page$]).pipe(
       switchMap(([sort, page]: [SortET, number]) =>
-        this.#productsStateService
-          .getStateProp('entities')
-          .pipe(map((products: ProductItemState[]) => this.parseProducts(products, page, sort))),
+        this.#productsStateService.getStateProp('entities').pipe(
+          map((products: ProductItemState[]) => this.parseProducts(products, page, sort)),
+          takeUntil(this.#destroyed$),
+        ),
       ),
     );
   }

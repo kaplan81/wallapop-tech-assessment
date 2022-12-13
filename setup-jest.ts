@@ -23,3 +23,4 @@ Object.defineProperty(window, 'getComputedStyle', {
     };
   },
 });
+Object.defineProperty(window, 'scrollTo', { value: jest.fn() });
