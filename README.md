@@ -33,10 +33,6 @@ When you navigate to products, you can:
 - Click on Favourites button (top right) and visualize the list of your favourite products.
 - In the modal dialog you can also remove items from the list.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
 ## Running unit tests
 
 Run `npm t` to execute the unit tests via [Jest](https://jestjs.io/).
@@ -46,3 +42,7 @@ Run `npm t` to execute the unit tests via [Jest](https://jestjs.io/).
 Run `npm run e2e:run` to execute the end-to-end tests via [Cypress](https://www.cypress.io/).
 
 And remember, you need to run `ng start` first. Otherwise `http://localhost:4200/` will not be available.
+
+## Build
+
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
