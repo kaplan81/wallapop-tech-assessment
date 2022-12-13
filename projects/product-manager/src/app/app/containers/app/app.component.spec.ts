@@ -15,7 +15,6 @@ export class MatDialogMock {
   open(): {
     afterClosed: () => Observable<any>;
   } {
-    console.log('OPENING');
     return {
       afterClosed: () => of(this.returnedData),
     };
