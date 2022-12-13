@@ -51,7 +51,7 @@ export class AppComponent {
 
   openDialog(): void {
     const dialogRef = this.#dialog.open(FavouritesDialogComponent, {
-      // disableClose: true,
+      disableClose: true,
       enterAnimationDuration: '200ms',
       exitAnimationDuration: '100ms',
       height: '80vh',
