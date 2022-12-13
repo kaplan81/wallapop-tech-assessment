@@ -38,3 +38,5 @@ Run `npm t` to execute the unit tests via [Jest](https://jestjs.io/).
 ## Running end-to-end tests
 
 Run `npm run e2e:run` to execute the end-to-end tests via [Cypress](https://www.cypress.io/).
+
+And remember, you need to run `ng start` first. Otherwise `http://localhost:4200/` will not be available.
