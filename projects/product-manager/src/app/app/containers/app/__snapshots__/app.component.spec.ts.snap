@@ -3,6 +3,7 @@
 exports[`AppComponent should match snapshot 1`] = `
 <mng-root
   __ngContext__="0"
+  dialog={[Function MatDialogMock]}
   isFavouritesDisabled$={[Function Observable]}
   isRootRoute={[Function Boolean]}
 >

@@ -28,7 +28,7 @@ import { ProductsStateService } from '../../services/products-state/products-sta
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  #dialog = inject(MatDialog);
+  dialog = inject(MatDialog);
   #favourites$: Observable<string[]>;
   isFavouritesDisabled$: Observable<boolean>;
   isRootRoute = true;
@@ -50,7 +50,7 @@ export class AppComponent {
   }
 
   openDialog(): void {
-    const dialogRef = this.#dialog.open(FavouritesDialogComponent, {
+    const dialogRef = this.dialog.open(FavouritesDialogComponent, {
       disableClose: true,
       enterAnimationDuration: '200ms',
       exitAnimationDuration: '100ms',
